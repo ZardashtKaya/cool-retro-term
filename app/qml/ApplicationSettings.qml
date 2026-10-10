@@ -86,7 +86,9 @@ QtObject {
     property real flickering: 0.1
 
     property real rgbShift: 0.0
-    property real vhs: 0.0
+    property real vhsBleed: 0.0
+    property real vhsJitter: 0.0
+    property real vhsHeadSwitch: 0.0
 
     property real _frameShininess: 0.2
     property real frameShininess: _frameShininess * 0.5
@@ -203,7 +205,9 @@ QtObject {
             "screenRadius": _screenRadius,
             "frameColor": _frameColor,
             "frameShininess": _frameShininess,
-            "vhs": vhs
+            "vhsBleed": vhsBleed,
+            "vhsJitter": vhsJitter,
+            "vhsHeadSwitch": vhsHeadSwitch
         }
         return profile
     }
@@ -309,7 +313,9 @@ QtObject {
         _screenRadius = settings.screenRadius !== undefined ? settings.screenRadius : _screenRadius
         _frameColor = settings.frameColor !== undefined ? settings.frameColor : _frameColor
         _frameShininess = settings.frameShininess !== undefined ? settings.frameShininess : _frameShininess
-        vhs = settings.vhs !== undefined ? settings.vhs : 0.0
+        vhsBleed = settings.vhsBleed !== undefined ? settings.vhsBleed : (settings.vhs !== undefined ? settings.vhs : 0.0)
+        vhsJitter = settings.vhsJitter !== undefined ? settings.vhsJitter : 0.0
+        vhsHeadSwitch = settings.vhsHeadSwitch !== undefined ? settings.vhsHeadSwitch : 0.0
 
         blinkingCursor = settings.blinkingCursor !== undefined ? settings.blinkingCursor : blinkingCursor
     }
@@ -874,7 +880,9 @@ QtObject {
                 "frameSize": 0.1,
                 "frameColor": "#222222",
                 "frameShininess": 0.2,
-                "vhs": 0.5
+                "vhsBleed": 0.35,
+                "vhsJitter": 0.15,
+                "vhsHeadSwitch": 0.20
             }'
             builtin: true
         }

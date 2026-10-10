@@ -7,7 +7,9 @@ layout(std140, binding = 0) uniform ubuf {
     mat4 qt_Matrix;
     float qt_Opacity;
     float time;
-    float vhsStrength;
+    float vhsBleed;
+    float vhsJitter;
+    float vhsHeadSwitch;
 };
 
 layout(location = 0) out vec2 qt_TexCoord0;

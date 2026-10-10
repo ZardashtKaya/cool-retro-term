@@ -88,7 +88,7 @@ Item {
     ShaderEffect {
         id: dynamicShader
 
-        property ShaderEffectSource screenBuffer: (vhsLoader.item && appSettings.vhs > 0) ? vhsLoader.item : frameBuffer
+        property ShaderEffectSource screenBuffer: (vhsLoader.item && (appSettings.vhsBleed > 0 || appSettings.vhsJitter > 0 || appSettings.vhsHeadSwitch > 0)) ? vhsLoader.item : frameBuffer
         property ShaderEffectSource burnInSource: burnInEffect.effectSource
         property ShaderEffectSource frameSource: terminalFrameLoader.item
 
@@ -200,7 +200,7 @@ Item {
 
     Loader {
         id: vhsLoader
-        active: appSettings.vhs > 0
+        active: (appSettings.vhsBleed > 0 || appSettings.vhsJitter > 0 || appSettings.vhsHeadSwitch > 0)
 
         width: staticShader.width
         height: staticShader.height
@@ -221,7 +221,9 @@ Item {
                 property ShaderEffectSource source: frameBuffer
                 property ShaderEffectSource noiseSource: noiseShaderSource
                 property real time: timeManager ? timeManager.time : 0
-                property real vhsStrength: appSettings.vhs
+                property real vhsBleed: appSettings.vhsBleed
+                property real vhsJitter: appSettings.vhsJitter
+                property real vhsHeadSwitch: appSettings.vhsHeadSwitch
 
                 vertexShader: "qrc:/shaders/vhs.vert.qsb"
                 fragmentShader: "qrc:/shaders/vhs.frag.qsb"
