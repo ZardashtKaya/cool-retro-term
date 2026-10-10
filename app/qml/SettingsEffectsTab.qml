@@ -91,6 +91,11 @@ ColumnLayout {
                 onNewValue: function(newValue) { appSettings._frameShininess = newValue }
                 value: appSettings._frameShininess
             }
+            CheckableSlider {
+                name: qsTr("VHS Effect")
+                onNewValue: function(newValue) { appSettings.vhs = newValue }
+                value: appSettings.vhs
+            }
         }
     }
 }
